@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080; // FORCE PORT 8080
 
-// Serve all files from this folder
 app.use(express.static(__dirname));
 
-// Start server
-app.listen(port, () => {
-  console.log(`✅ Running on port ${port}`);
+app.listen(PORT, () => {
+  console.log('✅ Running on port', PORT);
 });
-
