@@ -1,5 +1,7 @@
+// Educational API - for demonstration only
 const API_URL = "https://kahoot-api.joshuaj.co/api/join";
 
+// Elements
 const gameIdInput = document.getElementById('gameId');
 const botNameInput = document.getElementById('botName');
 const botCountInput = document.getElementById('botCount');
@@ -10,18 +12,22 @@ const progressContainer = document.getElementById('progressContainer');
 const progressBar = document.getElementById('progressBar');
 const progressText = document.getElementById('progressText');
 
+// Sounds
 const clickSound = document.getElementById('clickSound');
 const successSound = document.getElementById('successSound');
 const errorSound = document.getElementById('errorSound');
 const startSound = document.getElementById('startSound');
 
+// Control variable
 let stopSpawning = false;
 
+// Play sound helper
 function playSound(audioElement) {
   audioElement.currentTime = 0;
-  audioElement.play().catch(e => {});
+  audioElement.play().catch(e => {}); // Ignore autoplay block errors
 }
 
+// Status handler
 function showStatus(text, type = 'info') {
   statusDiv.textContent = text;
   statusDiv.classList.remove('hidden', 'bg-blue-500/20', 'text-blue-200', 'bg-green-500/20', 'text-green-200', 'bg-red-500/20', 'text-red-200', 'bg-yellow-500/20', 'text-yellow-200', 'bg-purple-500/20', 'text-purple-200');
@@ -41,11 +47,13 @@ function showStatus(text, type = 'info') {
   statusDiv.classList.remove('hidden');
 }
 
+// Update progress bar
 function updateProgress(current, total) {
   const percent = Math.round((current / total) * 100);
   progressBar.style.width = `${percent}%`;
   progressText.textContent = `${current} / ${total} bots joined`;
   
+  // Add glow when near completion
   if (percent > 80) {
     progressBar.classList.add('shadow-glow-purple');
   } else {
@@ -53,6 +61,7 @@ function updateProgress(current, total) {
   }
 }
 
+// Spawn single bot
 async function spawnBot(gameId, name) {
   try {
     const res = await fetch(API_URL, {
@@ -67,6 +76,7 @@ async function spawnBot(gameId, name) {
   }
 }
 
+// Start button logic
 startBtn.addEventListener('click', async () => {
   playSound(clickSound);
   
@@ -74,11 +84,13 @@ startBtn.addEventListener('click', async () => {
   const baseName = botNameInput.value.trim();
   const count = parseInt(botCountInput.value);
 
+  // Validation
   if (!gameId || !baseName || isNaN(count) || count < 1 || count > 20) {
     showStatus('⚠️ Please fill all fields correctly (max 20 bots)', 'error');
     return;
   }
 
+  // Reset state
   stopSpawning = false;
   startBtn.disabled = true;
   stopBtn.disabled = false;
@@ -89,6 +101,7 @@ startBtn.addEventListener('click', async () => {
 
   let success = 0;
 
+  // Spawn loop
   for (let i = 1; i <= count; i++) {
     if (stopSpawning) {
       showStatus(`⏹️ Stopped early. Joined ${success}/${count}`, 'warning');
@@ -101,19 +114,23 @@ startBtn.addEventListener('click', async () => {
     if (joined) success++;
     updateProgress(i, count);
     
+    // Delay to prevent rate limiting
     await new Promise(resolve => setTimeout(resolve, 300));
   }
 
+  // Final result
   if (success > 0 && !stopSpawning) {
     showStatus(`✅ Done! Successfully joined ${success}/${count} bots!`, 'success');
   } else if (!stopSpawning) {
     showStatus('❌ Failed. Check PIN or try again later.', 'error');
   }
 
+  // Reset buttons
   startBtn.disabled = false;
   stopBtn.disabled = true;
 });
 
+// Stop button logic
 stopBtn.addEventListener('click', () => {
   playSound(clickSound);
   stopSpawning = true;
@@ -121,6 +138,7 @@ stopBtn.addEventListener('click', () => {
   showStatus('⏹️ Stop requested... finishing current bot...', 'warning');
 });
 
+// Add input hover effects
 document.querySelectorAll('input').forEach(input => {
   input.addEventListener('focus', () => playSound(clickSound));
 });
