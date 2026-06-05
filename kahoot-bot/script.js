@@ -10,21 +10,16 @@ const progressBox = document.getElementById("progressBox");
 const progressBar = document.getElementById("progressBar");
 const progressText = document.getElementById("progressText");
 
-const clickSnd = document.getElementById("click");
-const okSnd = document.getElementById("success");
-const errSnd = document.getElementById("error");
-
 let stopFlag = false;
-const play = s => {s.currentTime=0;s.play().catch(()=>{})};
 
 function showStatus(txt, type='info') {
   statusBox.textContent = txt;
   statusBox.classList.remove('hidden', 'bg-purple-500/20', 'bg-green-500/20', 'bg-red-500/20', 'bg-yellow-500/20', 'text-purple-200', 'text-green-200', 'text-red-200', 'text-yellow-200', 'border-purple-400/30', 'border-green-400/30', 'border-red-400/30', 'border-yellow-400/30');
   
-  if(type==='info') statusBox.className += 'bg-purple-500/20 text-purple-200 border border-purple-400/30';
-  if(type==='success') {statusBox.className += 'bg-green-500/20 text-green-200 border border-green-400/30'; play(okSnd);}
-  if(type==='error') {statusBox.className += 'bg-red-500/20 text-red-200 border border-red-400/30'; play(errSnd);}
-  if(type==='warn') statusBox.className += 'bg-yellow-500/20 text-yellow-200 border border-yellow-400/30';
+  if(type==='info') statusBox.classList.add('bg-purple-500/20', 'text-purple-200', 'border', 'border-purple-400/30');
+  if(type==='success') statusBox.classList.add('bg-green-500/20', 'text-green-200', 'border', 'border-green-400/30');
+  if(type==='error') statusBox.classList.add('bg-red-500/20', 'text-red-200', 'border', 'border-red-400/30');
+  if(type==='warn') statusBox.classList.add('bg-yellow-500/20', 'text-yellow-200', 'border', 'border-yellow-400/30');
 }
 
 function updateProgress(cur, tot) {
@@ -46,7 +41,6 @@ async function joinBot(pin, name) {
 }
 
 startBtn.onclick = async () => {
-  play(clickSnd);
   const pin = pinInput.value.trim();
   const base = nameInput.value.trim() || "L";
   const num = parseInt(countInput.value);
@@ -70,7 +64,7 @@ startBtn.onclick = async () => {
   }
 
   if(!stopFlag) {
-    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 KAHO00T SUCKS`, "success");
+    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 KAHOOT SUCKS`, "success");
     else showStatus("❌ FAILED! Check PIN 😂", "error");
   }
 
@@ -79,7 +73,6 @@ startBtn.onclick = async () => {
 };
 
 stopBtn.onclick = () => {
-  play(clickSnd);
   stopFlag = true;
   stopBtn.disabled = true;
   showStatus("🛑 STOPPING...", "warn");
