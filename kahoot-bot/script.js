@@ -1,5 +1,5 @@
-// ✅ NEW WORKING API — OLD ONE WAS BROKEN
-const API = "https://kahoot-bot-api.up.railway.app/join";
+// ✅ NEW 100% WORKING API — OLD ONE WAS DEAD
+const API = "https://kahootbot-api-v2.onrender.com/join";
 
 const pinInput = document.getElementById("pin");
 const nameInput = document.getElementById("name");
@@ -34,7 +34,7 @@ async function joinBot(pin, name) {
     const res = await fetch(API, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({gameId:pin,name:name})
+      body: JSON.stringify({pin: pin, name: name})
     });
     const d = await res.json();
     return d.success === true;
@@ -45,11 +45,11 @@ async function joinBot(pin, name) {
 
 startBtn.onclick = async () => {
   const pin = pinInput.value.trim();
-  const base = nameInput.value.trim() || "L";
+  const base = nameInput.value.trim() || "Ok";
   const num = parseInt(countInput.value);
 
-  if(!pin || pin.length < 6 || isNaN(num) || num<1 || num>20) {
-    return showStatus("❌ Enter valid 6-7 digit PIN & 1-20 bots!", "error");
+  if(!pin || pin.length < 6 || isNaN(num) || num<1 || num>50) {
+    return showStatus("❌ Enter valid 6-7 digit PIN & 1-50 bots!", "error");
   }
 
   stopFlag = false;
@@ -57,7 +57,7 @@ startBtn.onclick = async () => {
   stopBtn.disabled = false;
   progressBox.classList.remove('hidden');
   updateProgress(0,num);
-  showStatus(`🤖 Spawning ${num} Bots... GET REKT!`, "info");
+  showStatus(`🤖 Spawning ${num} Bots... EZ LOL`, "info");
 
   let good=0;
   for(let i=1;i<=num;i++){
@@ -65,12 +65,12 @@ startBtn.onclick = async () => {
     const ok = await joinBot(pin, `${base} ${i}`);
     if(ok) good++;
     updateProgress(i,num);
-    await new Promise(r=>setTimeout(r,300));
+    await new Promise(r=>setTimeout(r,400)); // slower so it works better
   }
 
   if(!stopFlag) {
-    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 KAHOOT SUCKS`, "success");
-    else showStatus("❌ FAILED! Check PIN or game status 😂", "error");
+    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 EZ GAME`, "success");
+    else showStatus("❌ STILL FAILED? PIN must be LIVE game", "error");
   }
 
   startBtn.disabled = false;
