@@ -1,4 +1,3 @@
-// Educational API - for demonstration only
 const API_URL = "https://kahoot-api.joshuaj.co/api/join";
 
 // Elements
@@ -24,7 +23,7 @@ let stopSpawning = false;
 // Play sound helper
 function playSound(audioElement) {
   audioElement.currentTime = 0;
-  audioElement.play().catch(e => {}); // Ignore autoplay block errors
+  audioElement.play().catch(() => {});
 }
 
 // Status handler
@@ -52,13 +51,6 @@ function updateProgress(current, total) {
   const percent = Math.round((current / total) * 100);
   progressBar.style.width = `${percent}%`;
   progressText.textContent = `${current} / ${total} bots joined`;
-  
-  // Add glow when near completion
-  if (percent > 80) {
-    progressBar.classList.add('shadow-glow-purple');
-  } else {
-    progressBar.classList.remove('shadow-glow-purple');
-  }
 }
 
 // Spawn single bot
@@ -138,7 +130,8 @@ stopBtn.addEventListener('click', () => {
   showStatus('⏹️ Stop requested... finishing current bot...', 'warning');
 });
 
-// Add input hover effects
+// Input sound
 document.querySelectorAll('input').forEach(input => {
   input.addEventListener('focus', () => playSound(clickSound));
 });
+                          
