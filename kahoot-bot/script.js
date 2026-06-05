@@ -70,7 +70,7 @@ startBtn.onclick = async () => {
   }
 
   if(!stopFlag) {
-    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 KAH00T SUCKS`, "success");
+    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 KAHO00T SUCKS`, "success");
     else showStatus("❌ FAILED! Check PIN 😂", "error");
   }
 
