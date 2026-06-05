@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kahoot Bot | Fuck Kahoot</title>
+  <title>Kahoot Bot</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script>
@@ -33,16 +33,14 @@
     @layer utilities {
       .text-shadow { text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); }
       .input-glow:focus { box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.5), 0 0 15px rgba(156, 39, 176, 0.3); }
-      /* SPEED 2 = 4s total (faster than before) */
       .float-l { animation: floatUpDown 4s ease-in-out infinite; }
       .pulse-glow { animation: pulseGlow 2s infinite alternate; }
     }
 
-    /* EXACT ANIMATION: float UP → back DOWN → repeat */
     @keyframes floatUpDown {
       0%   { transform: translateY(0); }
-      50%  { transform: translateY(-80px); } /* GOES UP */
-      100% { transform: translateY(0); }     /* GOES BACK DOWN */
+      50%  { transform: translateY(-80px); }
+      100% { transform: translateY(0); }
     }
     @keyframes pulseGlow {
       from { filter: drop-shadow(0 0 8px currentColor); }
@@ -57,7 +55,7 @@
 </head>
 <body class="bg-gradient-to-b from-dark to-purple-900 min-h-screen font-sans text-white flex items-center justify-center p-4 overflow-x-hidden overflow-y-hidden relative">
 
-  <!-- 🎉 5x "L" FLOATING — SPREAD OUT, UP & DOWN 🎉 -->
+  <!-- 🎉 5x "L" FLOATING — SPREAD OUT, UP & DOWN ✅ FIXED ✅ 🎉 -->
   <div class="absolute top-1/4 left-1/5 text-6xl font-black text-red-500 text-shadow float-l pulse-glow z-0">L</div>
   <div class="absolute top-1/3 left-2/5 text-7xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 0.5s">L</div>
   <div class="absolute top-1/4 right-2/5 text-8xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 1s">L</div>
@@ -74,7 +72,7 @@
   <div class="w-full max-w-md fade-in z-20 relative">
     <div class="text-center mb-8">
       <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300 text-shadow pulse-glow">
-        KAHOOT BOT | FUCK KAHOOT 😭✌️
+        KAHOOT BOT | FUCK KAHOOT ✌️
       </h1>
       <p class="text-purple-300 text-lg">Spawn Bots • Make Everyone Cry 😈</p>
     </div>
@@ -94,7 +92,7 @@
           <label class="flex items-center gap-2 text-sm text-purple-200 mb-2">
             <i class="fa fa-user-secret text-purple-400"></i> Bot Base Name
           </label>
-          <input id="name" type="text" placeholder="Bot Name..." class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
+          <input id="name" type="text" placeholder="bot name..." class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
         </div>
 
         <!-- Count -->
