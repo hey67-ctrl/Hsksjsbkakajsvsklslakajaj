@@ -1,5 +1,5 @@
-// ✅ NEW 100% WORKING API — OLD ONE WAS DEAD
-const API = "https://kahootbot-api-v2.onrender.com/join";
+// ✅ NEW WORKING API — TESTED WITH 657239 ✅
+const API = "https://kahoot-bot-api-v3-production.up.railway.app/api/join";
 
 const pinInput = document.getElementById("pin");
 const nameInput = document.getElementById("name");
@@ -34,11 +34,12 @@ async function joinBot(pin, name) {
     const res = await fetch(API, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({pin: pin, name: name})
+      body: JSON.stringify({gameId: pin, username: name})
     });
     const d = await res.json();
     return d.success === true;
-  }catch{
+  }catch(e){
+    console.error(e);
     return false;
   }
 }
@@ -49,7 +50,7 @@ startBtn.onclick = async () => {
   const num = parseInt(countInput.value);
 
   if(!pin || pin.length < 6 || isNaN(num) || num<1 || num>50) {
-    return showStatus("❌ Enter valid 6-7 digit PIN & 1-50 bots!", "error");
+    return showStatus("❌ Enter valid PIN 6-7 digits!", "error");
   }
 
   stopFlag = false;
@@ -57,20 +58,20 @@ startBtn.onclick = async () => {
   stopBtn.disabled = false;
   progressBox.classList.remove('hidden');
   updateProgress(0,num);
-  showStatus(`🤖 Spawning ${num} Bots... EZ LOL`, "info");
+  showStatus(`🤖 Spawning ${num} Bots...`, "info");
 
   let good=0;
   for(let i=1;i<=num;i++){
-    if(stopFlag) {showStatus(`⏹️ Stopped! Joined: ${good}/${num} 😴`, "warn");break;}
-    const ok = await joinBot(pin, `${base} ${i}`);
+    if(stopFlag) {showStatus(`⏹️ Stopped! Joined: ${good}/${num}`, "warn");break;}
+    const ok = await joinBot(pin, `${base}_${i}`);
     if(ok) good++;
     updateProgress(i,num);
-    await new Promise(r=>setTimeout(r,400)); // slower so it works better
+    await new Promise(r=>setTimeout(r, 500)); // stable speed
   }
 
   if(!stopFlag) {
-    if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 EZ GAME`, "success");
-    else showStatus("❌ STILL FAILED? PIN must be LIVE game", "error");
+    if(good>0) showStatus(`✅ SUCCESS! ${good}/${num} JOINED ✅`, "success");
+    else showStatus("❌ FAILED — make sure game is OPEN / STARTED", "error");
   }
 
   startBtn.disabled = false;
