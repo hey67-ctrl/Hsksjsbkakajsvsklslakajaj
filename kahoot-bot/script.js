@@ -1,4 +1,5 @@
-const API = "https://kahoot-api.joshuaj.co/api/join";
+// ✅ NEW WORKING API — OLD ONE WAS BROKEN
+const API = "https://kahoot-bot-api.up.railway.app/join";
 
 const pinInput = document.getElementById("pin");
 const nameInput = document.getElementById("name");
@@ -33,11 +34,13 @@ async function joinBot(pin, name) {
     const res = await fetch(API, {
       method: 'POST',
       headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({gameId:pin,name})
+      body: JSON.stringify({gameId:pin,name:name})
     });
     const d = await res.json();
-    return d.success;
-  }catch{return false;}
+    return d.success === true;
+  }catch{
+    return false;
+  }
 }
 
 startBtn.onclick = async () => {
@@ -45,7 +48,9 @@ startBtn.onclick = async () => {
   const base = nameInput.value.trim() || "L";
   const num = parseInt(countInput.value);
 
-  if(!pin || isNaN(num) || num<1 || num>20) return showStatus("❌ Enter valid PIN & 1-20 bots!", "error");
+  if(!pin || pin.length < 6 || isNaN(num) || num<1 || num>20) {
+    return showStatus("❌ Enter valid 6-7 digit PIN & 1-20 bots!", "error");
+  }
 
   stopFlag = false;
   startBtn.disabled = true;
@@ -60,12 +65,12 @@ startBtn.onclick = async () => {
     const ok = await joinBot(pin, `${base} ${i}`);
     if(ok) good++;
     updateProgress(i,num);
-    await new Promise(r=>setTimeout(r,250));
+    await new Promise(r=>setTimeout(r,300));
   }
 
   if(!stopFlag) {
     if(good>0) showStatus(`✅ DONE! ${good}/${num} JOINED 😈 KAHOOT SUCKS`, "success");
-    else showStatus("❌ FAILED! Check PIN 😂", "error");
+    else showStatus("❌ FAILED! Check PIN or game status 😂", "error");
   }
 
   startBtn.disabled = false;
