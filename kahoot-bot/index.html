@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"" content="width=device-width, initial-scale=1.0">
-  <title>Kahoot Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kahoot Bot | EZ LOL</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script>
@@ -11,19 +11,20 @@
       theme: {
         extend: {
           colors: {
-            dark: '#000000',
+            dark: '#0b0518',
             purple: {
-              900: '#2D0C5E',
-              800: '#3B077A',
-              700: '#4A148C',
-              600: '#6A1B9A',
-              500: '#7B1FA2',
-              400: '#9C27B0',
-              300: '#BA68C8',
+              900: '#1a0a30',
+              800: '#251045',
+              700: '#32155c',
+              600: '#421b7a',
+              500: '#5820a0',
+              400: '#7028cc',
+              300: '#9040e0',
             }
           },
           boxShadow: {
-            'glow': '0 0 20px rgba(156, 39, 176, 0.6), 0 0 40px rgba(156, 39, 176, 0.3)',
+            'glow-red': '0 0 20px rgba(255, 0, 80, 0.6), 0 0 40px rgba(255, 0, 80, 0.3)',
+            'glow-purple': '0 0 20px rgba(120, 40, 220, 0.5)',
           }
         }
       }
@@ -31,8 +32,9 @@
   </script>
   <style type="text/tailwindcss">
     @layer utilities {
-      .text-shadow { text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); }
-      .input-glow:focus { box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.5), 0 0 15px rgba(156, 39, 176, 0.3); }
+      .text-shadow-red { text-shadow: 0 0 12px rgba(255, 0, 80, 0.8); }
+      .text-shadow-purple { text-shadow: 0 0 10px rgba(140, 60, 240, 0.6); }
+      .input-glow:focus { box-shadow: 0 0 0 2px rgba(120, 40, 220, 0.5), 0 0 15px rgba(120, 40, 220, 0.3); }
       .float-l { animation: floatUpDown 4s ease-in-out infinite; }
       .pulse-glow { animation: pulseGlow 2s infinite alternate; }
     }
@@ -55,36 +57,36 @@
 </head>
 <body class="bg-gradient-to-b from-dark to-purple-900 min-h-screen font-sans text-white flex items-center justify-center p-4 overflow-x-hidden overflow-y-hidden relative">
 
-  <!-- 🎉 5x MOVING RED "L" — FIXED ANIMATION 🎉 -->
-  <div class="absolute top-1/4 left-1/5 text-6xl font-black text-red-500 text-shadow float-l pulse-glow z-0">L</div>
-  <div class="absolute top-1/3 left-2/5 text-7xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 0.5s">L</div>
-  <div class="absolute top-1/4 right-2/5 text-8xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 1s">L</div>
-  <div class="absolute top-1/3 right-1/5 text-6xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 1.5s">L</div>
-  <div class="absolute top-2/5 left-1/2 text-7xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 2s">L</div>
+  <!-- 🎉 5x MOVING RED "L" — BACKGROUND 🎉 -->
+  <div class="absolute top-1/4 left-1/5 text-6xl font-black text-red-500 text-shadow-red float-l pulse-glow z-0">L</div>
+  <div class="absolute top-1/3 left-2/5 text-7xl font-black text-red-500 text-shadow-red float-l pulse-glow z-0" style="animation-delay: 0.5s">L</div>
+  <div class="absolute top-1/4 right-2/5 text-8xl font-black text-red-500 text-shadow-red float-l pulse-glow z-0" style="animation-delay: 1s">L</div>
+  <div class="absolute top-1/3 right-1/5 text-6xl font-black text-red-500 text-shadow-red float-l pulse-glow z-0" style="animation-delay: 1.5s">L</div>
+  <div class="absolute top-2/5 left-1/2 text-7xl font-black text-red-500 text-shadow-red float-l pulse-glow z-0" style="animation-delay: 2s">L</div>
 
   <!-- Background Glow -->
   <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
     <div class="absolute w-[700px] h-[700px] rounded-full bg-purple-500/10 blur-3xl -top-40 -left-40"></div>
-    <div class="absolute w-[600px] h-[600px] rounded-full bg-pink-500/10 blur-3xl bottom-20 right-20"></div>
+    <div class="absolute w-[600px] h-[600px] rounded-full bg-red-500/5 blur-3xl bottom-20 right-20"></div>
   </div>
 
-  <!-- MAIN CARD — ON TOP, FULLY WORKING -->
+  <!-- MAIN CARD — EXACT SAME LOOK AS YOUR SCREENSHOT -->
   <div class="w-full max-w-md fade-in z-20 relative">
     <div class="text-center mb-8">
-      <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300 text-shadow pulse-glow">
-        KAHOOT BOT | EZ LOL
+      <h1 class="text-[clamp(2.2rem,6vw,3.8rem)] font-black text-red-500 text-shadow-red pulse-glow leading-tight">
+        KAHOOT BOT |<br>EZ LOL
       </h1>
-      <p class="text-purple-300 text-lg">Spawn Bots • Make Everyone Cry 😈</p>
+      <p class="text-purple-300 text-lg mt-2">Spawn Bots • Make Everyone Cry 😈</p>
     </div>
 
-    <div class="bg-black/80 backdrop-blur-lg rounded-3xl p-7 shadow-glow border-2 border-purple-500/30 hover:border-purple-400/50 transition-all">
+    <div class="bg-black/80 backdrop-blur-lg rounded-3xl p-7 shadow-glow-purple border-2 border-purple-500/30">
       <div class="space-y-5">
         <!-- PIN -->
         <div>
           <label class="flex items-center gap-2 text-sm text-purple-200 mb-2">
             <i class="fa fa-key text-purple-400"></i> Game PIN
           </label>
-          <input id="pin" type="text" placeholder="put pin..." class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
+          <input id="pin" type="text" placeholder="pin..." class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
         </div>
 
         <!-- Bot Name -->
@@ -92,7 +94,7 @@
           <label class="flex items-center gap-2 text-sm text-purple-200 mb-2">
             <i class="fa fa-user-secret text-purple-400"></i> Bot Base Name
           </label>
-          <input id="name" type="text" placeholder="put bot name..." class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
+          <input id="name" type="text" placeholder="name..." class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
         </div>
 
         <!-- Count -->
@@ -105,7 +107,7 @@
 
         <!-- Buttons -->
         <div class="grid grid-cols-2 gap-4 pt-2">
-          <button id="start" class="bg-gradient-to-r from-purple-700 to-pink-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 rounded-xl text-lg transition-all transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-glow">
+          <button id="start" class="bg-gradient-to-r from-purple-600 to-red-600 hover:from-red-600 hover:to-purple-600 text-white font-bold py-4 rounded-xl text-lg transition-all transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-glow-red">
             <i class="fa fa-rocket mr-2"></i> SPAWN
           </button>
           <button id="stop" class="bg-purple-900/60 hover:bg-red-900/60 text-white font-bold py-4 rounded-xl text-lg transition-all opacity-75 hover:opacity-100 border border-purple-500/30" disabled>
@@ -119,14 +121,12 @@
         <!-- Progress -->
         <div id="progressBox" class="mt-3 hidden">
           <div class="w-full bg-purple-950/50 rounded-full h-3 overflow-hidden border border-purple-500/30">
-            <div id="progressBar" class="bg-gradient-to-r from-green-400 to-purple-500 h-3 w-0 transition-all duration-300 shadow-glow"></div>
+            <div id="progressBar" class="bg-gradient-to-r from-green-400 to-purple-500 h-3 w-0 transition-all duration-300 shadow-glow-purple"></div>
           </div>
           <p id="progressText" class="text-xs text-center mt-2 text-purple-300">0 / 0 Bots</p>
         </div>
       </div>
     </div>
-
-    <p class="text-center text-xs text-purple-400/60 mt-5">⚠️ Kahoot Sucks • Get Rekt 😂</p>
   </div>
 
   <script src="script.js"></script>
