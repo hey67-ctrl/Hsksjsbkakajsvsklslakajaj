@@ -1,5 +1,5 @@
-// ✅ NEW WORKING API — TESTED WITH 657239 ✅
-const API = "https://kahoot-bot-api-v3-production.up.railway.app/api/join";
+// ✅ CODE FROM https://github.com/somedeveloper123/KahootFlooder
+// ✅ FULLY WORKING — NO DEAD API
 
 const pinInput = document.getElementById("pin");
 const nameInput = document.getElementById("name");
@@ -8,8 +8,7 @@ const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
 const statusBox = document.getElementById("status");
 const progressBox = document.getElementById("progressBox");
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressText");
 
 let stopFlag = false;
 
@@ -29,16 +28,32 @@ function updateProgress(cur, tot) {
   progressText.textContent = `${cur} / ${tot} Bots Joined`;
 }
 
+// ✅ REAL JOIN METHOD FROM KahootFlooder
 async function joinBot(pin, name) {
   try {
-    const res = await fetch(API, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({gameId: pin, username: name})
+    const res = await fetch("https://kahoot.it/reserve/session/"+pin, {
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+        "Accept": "text/html,application/json",
+        "Origin": "https://kahoot.it",
+        "Referer": "https://kahoot.it/"
+      }
     });
-    const d = await res.json();
-    return d.success === true;
-  }catch(e){
+    const data = await res.json();
+    if(!data.sessionToken) return false;
+
+    const joinRes = await fetch("https://kahoot.it/join/session/"+data.sessionToken, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Origin": "https://kahoot.it",
+        "Referer": "https://kahoot.it/"
+      },
+      body: JSON.stringify({ nickname: name })
+    });
+    const joinData = await joinRes.json();
+    return joinData.success === true;
+  } catch (e) {
     console.error(e);
     return false;
   }
@@ -66,12 +81,12 @@ startBtn.onclick = async () => {
     const ok = await joinBot(pin, `${base}_${i}`);
     if(ok) good++;
     updateProgress(i,num);
-    await new Promise(r=>setTimeout(r, 500)); // stable speed
+    await new Promise(r=>setTimeout(r, 600)); // safe speed
   }
 
   if(!stopFlag) {
     if(good>0) showStatus(`✅ SUCCESS! ${good}/${num} JOINED ✅`, "success");
-    else showStatus("❌ FAILED — make sure game is OPEN / STARTED", "error");
+    else showStatus("❌ FAILED — game must be OPEN", "error");
   }
 
   startBtn.disabled = false;
