@@ -1,13 +1,7 @@
 {
-  "name": "kahoot-bot-pro",
+  "name": "kahoot-bot",
   "version": "1.0.0",
-  "description": "Cool Kahoot Bot Website - Black Purple Edition",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+  "scripts": {"start": "node server.js"},
+  "dependencies": {"express": "^4.18.2"}
 }
-
