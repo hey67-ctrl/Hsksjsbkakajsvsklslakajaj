@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kahoot Bot Lol</title>
+  <title>Kahoot Bot | Fuck Kahoot</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script>
@@ -31,45 +31,18 @@
   </script>
   <style type="text/tailwindcss">
     @layer utilities {
-      .text-shadow { text-shadow: 0 0 10px rgba(186, 104, 200, 0.7); }
+      .text-shadow { text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); }
       .input-glow:focus { box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.5), 0 0 15px rgba(156, 39, 176, 0.3); }
-      .float-1 { animation: float1 6s ease-in-out infinite; }
-      .float-2 { animation: float2 7s ease-in-out infinite; }
-      .float-3 { animation: float3 8s ease-in-out infinite; }
-      .float-4 { animation: float4 5s ease-in-out infinite; }
-      .float-5 { animation: float5 9s ease-in-out infinite; }
+      /* SPEED 2 = 4s total (faster than before) */
+      .float-l { animation: floatUpDown 4s ease-in-out infinite; }
       .pulse-glow { animation: pulseGlow 2s infinite alternate; }
     }
 
-    @keyframes float1 {
-      0%,100% { transform: translate(0, 0) rotate(5deg); }
-      25% { transform: translate(30px, -40px) rotate(-5deg); }
-      50% { transform: translate(-20px, -70px) rotate(8deg); }
-      75% { transform: translate(40px, -30px) rotate(-3deg); }
-    }
-    @keyframes float2 {
-      0%,100% { transform: translate(0, 0) rotate(-3deg); }
-      25% { transform: translate(-40px, -50px) rotate(6deg); }
-      50% { transform: translate(20px, -80px) rotate(-7deg); }
-      75% { transform: translate(-30px, -40px) rotate(4deg); }
-    }
-    @keyframes float3 {
-      0%,100% { transform: translate(0, 0) rotate(8deg); }
-      25% { transform: translate(20px, -60px) rotate(-6deg); }
-      50% { transform: translate(-30px, -90px) rotate(5deg); }
-      75% { transform: translate(50px, -50px) rotate(-8deg); }
-    }
-    @keyframes float4 {
-      0%,100% { transform: translate(0, 0) rotate(-5deg); }
-      25% { transform: translate(-30px, -30px) rotate(7deg); }
-      50% { transform: translate(40px, -60px) rotate(-4deg); }
-      75% { transform: translate(-20px, -80px) rotate(6deg); }
-    }
-    @keyframes float5 {
-      0%,100% { transform: translate(0, 0) rotate(4deg); }
-      25% { transform: translate(40px, -70px) rotate(-8deg); }
-      50% { transform: translate(-50px, -40px) rotate(7deg); }
-      75% { transform: translate(30px, -60px) rotate(-5deg); }
+    /* EXACT ANIMATION: float UP → back DOWN → repeat */
+    @keyframes floatUpDown {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-80px); } /* GOES UP */
+      100% { transform: translateY(0); }     /* GOES BACK DOWN */
     }
     @keyframes pulseGlow {
       from { filter: drop-shadow(0 0 8px currentColor); }
@@ -84,14 +57,12 @@
 </head>
 <body class="bg-gradient-to-b from-dark to-purple-900 min-h-screen font-sans text-white flex items-center justify-center p-4 overflow-x-hidden overflow-y-hidden relative">
 
-  <!-- 🎉 FLOATING SILLY WORDS — BEHIND EVERYTHING NOW 🎉 -->
-  <div class="absolute top-1/4 left-1/4 text-4xl font-black text-red-500 text-shadow float-1 pulse-glow z-0">L</div>
-  <div class="absolute top-1/3 right-1/3 text-2xl font-bold text-pink-400 text-shadow float-2 pulse-glow z-0">Kahoot Sucks</div>
-  <div class="absolute top-2/3 left-1/5 text-3xl font-black text-yellow-400 text-shadow float-3 pulse-glow z-0">No Skill</div>
-  <div class="absolute top-1/5 right-1/4 text-xl font-bold text-cyan-300 text-shadow float-4 pulse-glow z-0">Bot Army</div>
-  <div class="absolute top-3/4 right-1/5 text-2xl font-black text-green-400 text-shadow float-5 pulse-glow z-0">GG</div>
-  <div class="absolute top-2/5 left-1/3 text-lg font-bold text-orange-400 text-shadow float-1 pulse-glow z-0">Too Easy</div>
-  <div class="absolute top-1/2 right-1/6 text-3xl font-black text-purple-300 text-shadow float-2 pulse-glow z-0">L + RATIO</div>
+  <!-- 🎉 5x "L" FLOATING — SPREAD OUT, UP & DOWN 🎉 -->
+  <div class="absolute top-1/4 left-1/5 text-6xl font-black text-red-500 text-shadow float-l pulse-glow z-0">L</div>
+  <div class="absolute top-1/3 left-2/5 text-7xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 0.5s">L</div>
+  <div class="absolute top-1/4 right-2/5 text-8xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 1s">L</div>
+  <div class="absolute top-1/3 right-1/5 text-6xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 1.5s">L</div>
+  <div class="absolute top-2/5 left-1/2 text-7xl font-black text-red-500 text-shadow float-l pulse-glow z-0" style="animation-delay: 2s">L</div>
 
   <!-- Background Glow -->
   <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
@@ -99,12 +70,7 @@
     <div class="absolute w-[600px] h-[600px] rounded-full bg-pink-500/10 blur-3xl bottom-20 right-20"></div>
   </div>
 
-  <!-- Sounds -->
-  <audio id="click" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-2226.mp3" preload="auto">
-  <audio id="success" src="https://assets.mixkit.co/sfx/preview/mixkit-completion-notification-2746.mp3" preload="auto">
-  <audio id="error" src="https://assets.mixkit.co/sfx/preview/mixkit-game-over-trombone-1940.mp3" preload="auto">
-
-  <!-- Main Card — ON TOP (z-20) → YOU CAN SEE & CLICK! -->
+  <!-- MAIN CARD — ON TOP, FULLY VISIBLE -->
   <div class="w-full max-w-md fade-in z-20 relative">
     <div class="text-center mb-8">
       <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300 text-shadow pulse-glow">
@@ -128,7 +94,7 @@
           <label class="flex items-center gap-2 text-sm text-purple-200 mb-2">
             <i class="fa fa-user-secret text-purple-400"></i> Bot Base Name
           </label>
-          <input id="name" type="text" placeholder="e.g. L KING, Kahoot Sucks" class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
+          <input id="name" type="text" placeholder="e.g. L, Kahoot Sucks" class="w-full px-4 py-3 rounded-xl bg-purple-900/40 border border-purple-500/40 focus:outline-none input-glow text-white text-lg">
         </div>
 
         <!-- Count -->
@@ -167,5 +133,4 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
-    
+</html>
