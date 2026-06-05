@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kahoot Bot</title>
+  <title>Kahoot Bot Pro | Black Purple Edition</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <script>
@@ -27,7 +27,6 @@
           },
           boxShadow: {
             'glow-purple': '0 0 20px rgba(156, 39, 176, 0.6), 0 0 40px rgba(156, 39, 176, 0.3)',
-            'glow-strong': '0 0 30px rgba(186, 104, 200, 0.8), 0 0 60px rgba(156, 39, 176, 0.4)',
           }
         }
       }
@@ -35,33 +34,20 @@
   </script>
   <style type="text/tailwindcss">
     @layer utilities {
-      .content-auto { content-visibility: auto; }
       .text-shadow { text-shadow: 0 0 10px rgba(186, 104, 200, 0.5); }
-      .input-glow:focus { box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.5), 0 0 15px rgba(156, 39, 176, 0.3); }
+      .input-glow:focus { box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.5); }
       .animate-float { animation: float 4s ease-in-out infinite; }
-      .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-      .animate-glow { animation: glow 2s ease-in-out infinite alternate; }
-      .animate-bounce-slow { animation: bounce 2s infinite; }
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-10px); }
     }
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 10px rgba(156, 39, 176, 0.6)); }
-      to { filter: drop-shadow(0 0 20px rgba(186, 104, 200, 0.9)); }
-    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .fade-in { animation: fadeIn 0.6s ease-out forwards; }
-    .scale-in { animation: scaleIn 0.4s ease-out forwards; }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -70,13 +56,7 @@
   <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10">
     <div class="absolute w-[600px] h-[600px] rounded-full bg-purple-500/10 blur-3xl -top-40 -left-40 animate-float"></div>
     <div class="absolute w-[500px] h-[500px] rounded-full bg-purple-400/10 blur-3xl bottom-20 right-20 animate-float" style="animation-delay: 2s"></div>
-    <div class="absolute w-[300px] h-[300px] rounded-full bg-purple-300/5 blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
-    
-    <!-- Floating Particles -->
-    <div class="absolute w-2 h-2 bg-purple-400 rounded-full blur-sm" style="top: 20%; left: 10%; animation: float 6s infinite"></div>
-    <div class="absolute w-1 h-1 bg-purple-300 rounded-full blur-sm" style="top: 60%; left: 85%; animation: float 5s infinite; animation-delay: 1s"></div>
-    <div class="absolute w-1.5 h-1.5 bg-purple-500 rounded-full blur-sm" style="top: 40%; left: 90%; animation: float 7s infinite; animation-delay: 3s"></div>
-    <div class="absolute w-2 h-2 bg-purple-400 rounded-full blur-sm" style="top: 75%; left: 15%; animation: float 6s infinite; animation-delay: 2s"></div>
+    <div class="absolute w-[300px] h-[300px] rounded-full bg-purple-300/5 blur-2xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
   </div>
 
   <!-- Sound Effects -->
@@ -88,14 +68,14 @@
   <div class="w-full max-w-md fade-in">
     <!-- Header -->
     <div class="text-center mb-8">
-      <h1 class="text-[clamp(2rem,5vw,3.2rem)] font-black text-shadow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-200 animate-glow">
+      <h1 class="text-[clamp(2rem,5vw,3rem)] font-black text-shadow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-200">
         KAHOOT BOT PRO
       </h1>
       <p class="text-purple-300 mt-2 text-lg opacity-80">Spawn bots • Fast • Cool</p>
     </div>
 
     <!-- Main Card -->
-    <div class="bg-black/70 backdrop-blur-md rounded-2xl p-6 shadow-glow-purple border border-purple-500/20 transition-all duration-300 hover:shadow-glow-strong scale-in">
+    <div class="bg-black/70 backdrop-blur-md rounded-2xl p-6 shadow-glow-purple border border-purple-500/20">
       <div class="space-y-5">
         <!-- Game PIN Input -->
         <div class="space-y-2">
@@ -107,7 +87,7 @@
             type="text" 
             id="gameId" 
             placeholder="Enter 6-7 digit PIN..." 
-            class="w-full px-4 py-3 rounded-lg bg-purple-900/30 border border-purple-500/30 focus:outline-none input-glow transition-all duration-300 text-white placeholder-purple-300/60"
+            class="w-full px-4 py-3 rounded-lg bg-purple-900/30 border border-purple-500/30 focus:outline-none input-glow text-white placeholder-purple-300/60"
             required
           >
         </div>
@@ -122,7 +102,7 @@
             type="text" 
             id="botName" 
             placeholder="e.g. Shadow, PlayerX, Bot" 
-            class="w-full px-4 py-3 rounded-lg bg-purple-900/30 border border-purple-500/30 focus:outline-none input-glow transition-all duration-300 text-white placeholder-purple-300/60"
+            class="w-full px-4 py-3 rounded-lg bg-purple-900/30 border border-purple-500/30 focus:outline-none input-glow text-white placeholder-purple-300/60"
             required
           >
         </div>
@@ -139,28 +119,28 @@
             min="1" 
             max="20" 
             value="5" 
-            class="w-full px-4 py-3 rounded-lg bg-purple-900/30 border border-purple-500/30 focus:outline-none input-glow transition-all duration-300 text-white placeholder-purple-300/60"
+            class="w-full px-4 py-3 rounded-lg bg-purple-900/30 border border-purple-500/30 focus:outline-none input-glow text-white"
             required
           >
         </div>
 
         <!-- Buttons -->
         <div class="grid grid-cols-2 gap-3 pt-2">
-          <button id="startBtn" class="bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-500 hover:to-purple-700 font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.97] shadow-lg hover:shadow-glow-purple text-lg">
-            <i class="fa fa-rocket mr-2 animate-bounce-slow"></i> SPAWN
+          <button id="startBtn" class="bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-500 hover:to-purple-700 font-semibold py-3 px-4 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg">
+            <i class="fa fa-rocket mr-2"></i> SPAWN
           </button>
-          <button id="stopBtn" class="bg-purple-900/50 hover:bg-purple-800/60 font-semibold py-3 px-4 rounded-lg transition-all duration-300 opacity-70 hover:opacity-100 border border-purple-500/20" disabled>
+          <button id="stopBtn" class="bg-purple-900/50 hover:bg-purple-800/60 font-semibold py-3 px-4 rounded-lg transition-all opacity-70 hover:opacity-100 border border-purple-500/20" disabled>
             <i class="fa fa-stop-circle mr-2"></i> STOP
           </button>
         </div>
 
         <!-- Status Display -->
-        <div id="status" class="mt-4 p-3 rounded-lg text-sm text-center hidden transition-all duration-300 font-medium"></div>
+        <div id="status" class="mt-4 p-3 rounded-lg text-sm text-center hidden transition-all font-medium"></div>
 
         <!-- Progress Bar -->
         <div id="progressContainer" class="mt-2 hidden">
           <div class="w-full bg-purple-950/50 rounded-full h-2 overflow-hidden border border-purple-500/20">
-            <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-purple-400 h-2 w-0 transition-all duration-300 shadow-glow-purple"></div>
+            <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-purple-400 h-2 w-0 transition-all"></div>
           </div>
           <p id="progressText" class="text-xs text-center mt-2 text-purple-300/70">0 / 0 bots</p>
         </div>
@@ -176,5 +156,5 @@
 
   <script src="script.js"></script>
 </body>
-                                                                                   </html>
+  </html>
     
